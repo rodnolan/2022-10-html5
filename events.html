@@ -3,11 +3,40 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Events Demo</title>
     <script src="events.js"></script>
+    <style>
+      .agree {
+        background-color: green;
+      }
+      .disagree {
+        background-color: red;
+      }
+      .maybe {
+        background-color: lightgray;
+      }
+      .agreeP {
+        color: green;
+      }
+      .disagreeP {
+        color: red;
+      }
+      .maybeP {
+        color: lightgray;
+      }
+    </style>
   </head>
   <body>
-    <button id="btnAgree">Agree</button>
-    <button id="btnDisagree">Disagree</button>
+    <div id="btnWrapper">
+      <div>
+        <div id="middle">
+        <!-- <div id="middle" onclick="handleClick(event)"> -->
+          <button id="btnAgree">Agree</button>
+          <button id="btnDisagree">Disagree</button>
+          <button id="btnMaybe">Maybe</button>
+        </div>
+      </div>
+    </div>
+    <p id="message">click here</p>
   </body>
 </html>
