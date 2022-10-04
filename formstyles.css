@@ -1,0 +1,44 @@
+
+form {
+    width: 50%;
+    max-width: 500px;
+    margin: auto;
+}
+
+div {
+    display: flex;
+    /* border: 1px solid black; */
+    padding: 5px;
+}
+#buttonsWrapper {
+    justify-content: center;
+}
+
+
+label {
+    width: 30%;
+    text-align: right;
+    padding-right: .25rem;
+}
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 70%;
+}
+
+legend {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: cadetblue;
+}
+
+
+
+:required {
+    background-color: yellow;
+}
+
+input:invalid {
+    border-color: red;
+}
+
+input[required]:valid {
+    border-color: green;
+}

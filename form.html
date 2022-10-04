@@ -1,0 +1,67 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <script>
+      function handleSubmit(event) {
+        console.log("form was submitted");
+        event.preventDefault();
+      }
+    </script>
+    <link rel="stylesheet" href="formstyles.css" />
+  </head>
+  <body>
+    <h1>Registration Form</h1>
+    <a href="index.html">Go back home</a>
+
+    <form method="get" onsubmit="handleSubmit(event);">
+      <fieldset>
+        <legend>Basic Info</legend>
+
+        <div>
+          <label for="firstName">First
+
+
+
+
+
+
+
+
+            Name: </label>
+          <input id="firstName" type="text" placeholder="first name" name="firstName" required />
+        </div>
+        <div>
+          <label for="lastName">Last Name: </label>
+          <input id="lastName" type="text" placeholder="last name" name="lastName" />
+        </div>
+        <div>
+          <label for="email">Email: </label>
+          <input id="email" type="email" placeholder="email" name="email" required />
+        </div>
+        <div>
+          <label for="password">Password: </label>
+          <input id="password" type="password" placeholder="password" name="password" />
+        </div>
+      </fieldset>
+      <div id="buttonsWrapper">
+        <input type="submit" value="Register Now" /> &nbsp;&nbsp;&nbsp;
+        <input type="reset" value="Start Over" />
+      </div>
+    </form>
+  </body>
+</html>
+
+<!--
+<p><strong>paragraph</strong> 1</p>
+<p>paragraph 2</p>
+<p>paragraph 3</p>
+<p>paragraph 4<br />paragraph 5</p>
+
+
+<div>box 1 Lorem <em>ipsum dolor sit</em> amet consectetur adipisicing elit. Iusto et dolore culpa laboriosam quis aperiam a aliquam debitis vero laborum? Eum consequatur earum beatae fugit, dolorem iure repellat veritatis nihil?</div>
+<div>box 2</div>
+<div>box 3</div>
+ -->
