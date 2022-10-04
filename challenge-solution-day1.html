@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Forms Demo</title>
+    <title>Solution for the Day 1 Challenge </title>
     <style>
         /* set the width and center the form on the page */
         form {
@@ -94,48 +94,11 @@
         function handleSubmit(event) {
           console.log("form was submitted");
           event.preventDefault();
-
-          const form = document.getElementById('myFirstForm');
-
-
-          // console.log(form);
-          // console.log(form.elements);
-          // console.log(form.elements.fname);
-
-          // for this to work, the input tag needs to have a name attribute
-          console.log(form.elements.fname.value);
-
-          // but there are other ways to search for HTML elements...
-          const fnameEntry = document.querySelector('[placeholder="please enter your first name"]');
-          console.log(fnameEntry.value);
-
-          console.log(form.elements.lname.value);
-          console.log(form.elements.email.value);
-          console.log(form.elements.phone.value);
-          console.log(form.elements.age.value);
-          console.log(form.elements.state.value);
-          console.log(form.elements.country.value);
-
-          console.log(form.elements.newsletter.checked);
-
-          console.log(form.elements.favColor.value);
-          console.log(form.elements.fcBlue.checked);
-          console.log(form.elements.fcRed.checked);
-          console.log(form.elements.fcGreen.checked);
-          console.log(form.elements.fcOrange.checked);
-          console.log(form.elements.fcYellow.checked);
-
-          console.log(form.elements.favFruit.value);
-          console.log(form.elements.comments.value);
-
-
-
-
         }
     </script>
   </head>
   <body>
-    <form id="myFirstForm" onsubmit="handleSubmit(event)">
+    <form onsubmit="handleSubmit(event)">
       <fieldset>
         <legend>Basic Info</legend>
         <div class="labelAndFieldWrapper">
@@ -146,7 +109,6 @@
             id="fname"
             placeholder="please enter your first name"
             required
-            value="default value for first name"
           />
         </div>
 
@@ -157,7 +119,6 @@
             name="lname"
             id="lname"
             placeholder="please enter your last name"
-            value="Nolan"
           />
         </div>
 
@@ -168,7 +129,6 @@
             name="email"
             id="email"
             placeholder="you@domain.com"
-            value="rnolan@aquent.com"
           />
         </div>
 
@@ -179,7 +139,6 @@
             name="phone"
             id="phone"
             placeholder="905-897-7790"
-            value="905-897-7790"
           />
         </div>
 
@@ -192,11 +151,10 @@
             placeholder="21"
             min="21"
             max="29"
-            value="29"
           />
         </div>
       </fieldset>
-<!--
+
       <fieldset>
         <legend>Login Info</legend>
         <div class="labelAndFieldWrapper">
@@ -223,31 +181,26 @@
         </div>
         <span style="display: none;"> minimum 8 characters, at least one number and at least one letter </span>
       </fieldset>
-    -->
+
       <fieldset>
         <legend>Address</legend>
 
-<!--
-
-  <div class="labelAndFieldWrapper">
-    <label for="street">Street:</label>
-    <input
-    type="text"
-    name="street"
-    id="street"
-    />
-  </div>
-  <div class="labelAndFieldWrapper">
-    <label for="city">City:</label>
-    <input
-    type="text"
-    name="city"
-    id="city"
-    />
-  </div>
--->
-
-
+        <div class="labelAndFieldWrapper">
+          <label for="street">Street:</label>
+          <input
+            type="text"
+            name="street"
+            id="street"
+          />
+        </div>
+        <div class="labelAndFieldWrapper">
+          <label for="city">City:</label>
+          <input
+            type="text"
+            name="city"
+            id="city"
+          />
+        </div>
         <div class="labelAndFieldWrapper">
           <label for="state">State:</label>
           <select name="state" id="state">
@@ -267,16 +220,14 @@
             <option value="USA" selected>USA</option>
           </select>
         </div>
-        <!--
-          <div class="labelAndFieldWrapper">
-            <label for="zip">Zip Code:</label>
-            <input
+        <div class="labelAndFieldWrapper">
+          <label for="zip">Zip Code:</label>
+          <input
             type="text"
             name="zip"
             id="zip"
-            />
-          </div>
-        -->
+          />
+        </div>
       </fieldset>
 
       <fieldset>
@@ -313,7 +264,7 @@
                 value="red"
                 name="favColor"
                 id="fcRed"
-
+                checked
               />
               <label for="fcRed" class="rbLabel">Red</label>
             </div>
