@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Forms Demo</title>
+    <style>
+        /* set the width and center the form on the page */
+        form {
+            margin: auto;
+            width: 50%;
+            max-width: 500px;
+        }
+
+        /* make the buttons at the bottom and the label/field
+            pairs behave like flexbox items */
+        /* the default behaviour is for children to lay
+            themselves out side by side and break to the
+            next row when they run out of horizontal space
+        */
+        #buttons, .labelAndFieldWrapper {
+            display: flex;
+            /*
+              note that both of the elements targeted by
+              these selectors contain exactly two children
+              so the side-by-side layout works well
+            */
+        }
+
+        /* right align all labels and equalize the width */
+        label {
+            width: 30%;
+            text-align: right;
+            vertical-align: top;
+            color: darkred;
+            font-family: sans-serif;
+            padding-right: 10px;
+        }
+
+        /* and make the form fields in the right "column" use
+            all of the remaining space
+        */
+        input,
+        textarea,
+        select {
+            width: 70%;
+            background-color: lightblue; /* sure, why not? */
+        }
+
+        /* put some vertical space between the fields and
+            groups of fields (fieldset elements)
+        */
+        .labelAndFieldWrapper, fieldset {
+            margin-bottom: 1rem;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"],
+        input[type="submit"],
+        input[type="reset"] {
+            width: unset;
+        }
+
+        /* apply some text formatting to the legends */
+        legend {
+            font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+            "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+            font-size: large;
+            font-weight: bold;
+            color: blue;
+        }
+
+        /* format required fields */
+        :required {
+            background-color: yellow;
+        }
+
+        /* call attention to invalid fields */
+        input:invalid {
+            border: 3px solid red;
+        }
+
+        /* and provide visual confirmation when the status switches to valid */
+        input[required]:valid {
+            border: 2px solid black;
+            background-color: lightgreen;
+        }
+
+        /* center the submit and reset buttons */
+        #buttons {
+            justify-content: center;
+            /* this works because this item is a flex box */
+        }
+    </style>
+    <script>
+        function handleSubmit(event) {
+          console.log("form was submitted");
+          event.preventDefault();
+        }
+    </script>
+  </head>
+  <body>
+    <form onsubmit="handleSubmitLocal(event)">
+      <fieldset>
+        <legend>Basic Info</legend>
+        <div class="labelAndFieldWrapper">
+          <label for="fname">First Name:</label>
+          <input
+            type="text"
+            name="fname"
+            id="fname"
+            placeholder="please enter your first name"
+            required
+          />
+        </div>
+
+        <div class="labelAndFieldWrapper">
+          <label for="lname">Last Name:</label>
+          <input
+            type="text"
+            name="lname"
+            id="lname"
+            placeholder="please enter your last name"
+          />
+        </div>
+
+        <div class="labelAndFieldWrapper">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="you@domain.com"
+          />
+        </div>
+
+        <div class="labelAndFieldWrapper">
+          <label for="phone">Phone:</label>
+          <input
+            type="tel"
+            name="phone"
+            id="phone"
+            placeholder="905-897-7790"
+          />
+        </div>
+
+        <div class="labelAndFieldWrapper">
+          <label for="age">Age:</label>
+          <input
+            type="number"
+            name="age"
+            id="age"
+            placeholder="21"
+            min="21"
+            max="29"
+          />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Login Info</legend>
+        <div class="labelAndFieldWrapper">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="enter your desired username"
+            required
+            minlength="3"
+            maxlength="10"
+          />
+        </div>
+        <div class="labelAndFieldWrapper">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+          />
+        </div>
+        <span style="display: none;"> minimum 8 characters, at least one number and at least one letter </span>
+      </fieldset>
+
+      <fieldset>
+        <legend>Address</legend>
+
+        <div class="labelAndFieldWrapper">
+          <label for="street">Street:</label>
+          <input
+            type="text"
+            name="street"
+            id="street"
+          />
+        </div>
+        <div class="labelAndFieldWrapper">
+          <label for="city">City:</label>
+          <input
+            type="text"
+            name="city"
+            id="city"
+          />
+        </div>
+        <div class="labelAndFieldWrapper">
+          <label for="state">State:</label>
+          <select name="state" id="state">
+            <option value="IA">Iowa</option>
+            <option value="IL" selected>Illinois</option>
+            <option value="MI">Michigan</option>
+            <option value="HI">Hawaii</option>
+            <option value="CA">California</option>
+            <option value="TX">Texas</option>
+            <option value="FL">Florida</option>
+          </select>
+        </div>
+        <div class="labelAndFieldWrapper">
+          <label for="country">Country:</label>
+          <select name="country" id="country">
+            <option value="Canada">Canada</option>
+            <option value="USA" selected>USA</option>
+          </select>
+        </div>
+        <div class="labelAndFieldWrapper">
+          <label for="zip">Zip Code:</label>
+          <input
+            type="text"
+            name="zip"
+            id="zip"
+          />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Preferences</legend>
+        <div class="labelAndFieldWrapper">
+
+          <label for="newsletter">Receive newsletter?</label>
+          <input
+            type="checkbox"
+            name="newletter"
+            id="newsletter"
+            value="yes"
+            checked
+          />
+        </div>
+
+        <div class="labelAndFieldWrapper">
+          <label>Fav Color:</label>
+
+          <div class="rbwrapper">
+            <div>
+              <input
+                type="radio"
+                value="blue"
+                name="favColor"
+                id="fcBlue"
+              />
+              <label for="fcBlue" class="rbLabel">Blue</label>
+            </div>
+
+            <div>
+              <input
+                type="radio"
+                value="red"
+                name="favColor"
+                id="fcRed"
+                checked
+              />
+              <label for="fcRed" class="rbLabel">Red</label>
+            </div>
+
+            <div>
+              <input
+                type="radio"
+                value="green"
+                name="favColor"
+                id="fcGreen"
+              />
+              <label for="fcGreen" class="rbLabel">Green</label>
+            </div>
+
+            <div>
+              <input
+                type="radio"
+                value="orange"
+                name="favColor"
+                id="fcOrange"
+              />
+              <label for="fcOrange" class="rbLabel">Orange</label>
+            </div>
+
+            <div>
+              <input
+                type="radio"
+                value="yellow"
+                name="favColor"
+                id="fcYellow"
+              />
+              <label for="fcYellow" class="rbLabel">Yellow</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="labelAndFieldWrapper">
+          <label for="favFruit">Fav Fruit: </label>
+          <input
+            list="fruits"
+            name="favFruit"
+            id="favFruit"
+          />
+          <datalist id="fruits">
+            <option value="apples">
+            <option value="bananas">
+            <option value="oranges">
+            <option value="pears">
+            <option value="plums">
+            <option value="peaches">
+            <option value="apricots">
+            <option value="figs">
+          </datalist>
+        </div>
+
+      </fieldset>
+
+      <fieldset>
+        <legend>Miscellaneous</legend>
+        <div class="labelAndFieldWrapper">
+          <label for="comments">Comments:</label>
+          <textarea
+            name="comments"
+            id="comments"
+            placeholder="please leave your comments here"
+            rows="4"
+          ></textarea>
+        </div>
+      </fieldset>
+
+
+      <div id="buttons">
+        <input
+          type="submit"
+          value="Register"
+        />
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <input
+          type="reset"
+          value="Start Over"
+        />
+      </div>
+    </form>
+
+
+</body>
+</html>
+
+
+<!-- Here are some other html input types that are not demonstrated here:
+<input type="button">
+<input type="color">
+
+<input type="date">
+<input type="time">
+<input type="week">
+<input type="month">
+<input type="datetime-local">
+
+<input type="file">
+<input type="hidden">
+<input type="image">
+<input type="range">
+<input type="search">
+<input type="url">
+-->
+
