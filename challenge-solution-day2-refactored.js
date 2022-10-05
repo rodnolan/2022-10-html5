@@ -13,6 +13,10 @@ function initialize() {
     {
       first: "Brendan",
       last: "Eich"
+    },
+    {
+      first: "John",
+      last: "Deere"
     }
   ];
 
@@ -60,15 +64,16 @@ function generateItemRow(item, style) {
   row.addEventListener('mouseout', toggleHighlight);
 
   const fnCell = generateCell(item.first);
-  const lnCell = generateCell(item.last);
   row.appendChild(fnCell);
+
+  const lnCell = generateCell(item.last);
   row.appendChild(lnCell);
 
   return row;
 }
 
 function generateCell(text, isHeader = false) {
-  const cell = document.createElement(isHeader ? 'th' : 'th');
+  const cell = document.createElement(isHeader ? 'th' : 'td');
   cell.innerText = text;
 
   return cell;

@@ -10,6 +10,10 @@ const people = [
   {
     fn: "Brendan",
     ln: "Eich"
+  },
+  {
+    fn: "John",
+    ln: "Deere"
   }
 ];
 
@@ -200,6 +204,8 @@ function makeTable2() {
   tbl.appendChild(r3);
 
 
+  const r4 = generateEvenRow();
+  tbl.appendChild(r4);
 
   // the remaining code in the is function is full of repetition
   // and is pleading to be refactored
@@ -235,6 +241,16 @@ function makeTable2() {
   cell2 = document.createElement('td');
   cell2.innerText = people[2].ln;
   r3.appendChild(cell2);
+
+  // make/attach row 4 col 1
+  cell1 = document.createElement('td');
+  cell1.innerText = people[3].fn
+  r4.appendChild(cell1);
+
+  // make/attach row 4 col 2
+  cell2 = document.createElement('td');
+  cell2.innerText = people[3].ln;
+  r4.appendChild(cell2);
 }
 
 
