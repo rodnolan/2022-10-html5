@@ -124,5 +124,15 @@ console.log('the guitarists pumped out ', beatlesGuitaristsSRC2);
 */
 
 
+// array destructuring
+// let first = beatles[0];
+// let second = beatles[1];
+// let second = beatles[2];
+// let second = beatles[3];
+let [first, second, third, fourth] = beatles;
+console.log(first);
+console.log(second);
+console.log(third);
+console.log(fourth);
 
 
