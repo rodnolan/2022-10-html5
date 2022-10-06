@@ -18,7 +18,9 @@ function reset() {
 }
 
 function getData() {
-  const url = 'https://jsonplaceholder.typicode.com/users';
+  reset();
+  // const url = 'https://jsonplaceholder.typicode.com/users';
+  const url = 'https://rodnolan.github.io/fed-files/customers.json';
   goGetExternalData(url);
 
   async function goGetExternalData(url) {
@@ -28,7 +30,14 @@ function getData() {
     console.log(responseAsJSON);
 
     const container = document.getElementById("container");
-    container.appendChild(generateTableFrom(responseAsJSON));
+
+    if (responseAsJSON) {
+      container.appendChild(generateTableFrom(responseAsJSON));
+    } else {
+      alert('sorry, error');
+    }
+
+    // responseAsJSON && container.appendChild(generateTableFrom(responseAsJSON));
   }
 
 }
@@ -89,7 +98,7 @@ function generateItemRow(item, style) {
 
 function generateCell(contents, isHeader = false) {
   const cell = document.createElement(isHeader ? 'th' : 'td');
-  if (typeof contents === 'string') {
+  if (typeof contents === 'string' || typeof contents === 'number') {
     cell.innerText = contents;
   } else if (typeof contents === 'object') {
     cell.appendChild(generateCellHtmlFrom(contents));
@@ -102,7 +111,7 @@ function generateCellHtmlFrom(object) {
   const allProps = document.createElement('div');
   Object.keys(object).forEach(key => {
     const propertyValue = object[key]
-    if (typeof propertyValue !== 'object') {
+    if (typeof propertyValue !== 'object') { // hide copmplex properties
       const line = document.createElement('div');
       line.innerText = `${key}: ${propertyValue}`;
       allProps.appendChild(line);
