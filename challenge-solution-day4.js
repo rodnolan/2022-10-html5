@@ -7,6 +7,15 @@ function initialize() {
 
   const btn2 = document.getElementById("btnReset");
   btn2.addEventListener('click', reset);
+
+  const heightAboveBtn = document.getElementById("btnAboveAverageHeight");
+  const heightBelowBtn = document.getElementById("btnBelowAverageHeight");
+  const clearFiltersBtn = document.getElementById("btnClearFilters");
+
+  heightAboveBtn.addEventListener('click', filterOutShortPeople);
+  heightBelowBtn.addEventListener('click', filterOutTallPeople);
+  clearFiltersBtn.addEventListener('click', clearFilters);
+
 }
 
 function enableGetDataButton (enable) {
@@ -39,6 +48,7 @@ function getData() {
     } else {
 
       // container.appendChild(generateTableFrom(responseAsJSON));
+
       if (prepareData(responseAsJSON)) {
         enableGetDataButton(false);
       }
@@ -76,9 +86,9 @@ function prepareData(json) {
   }
 }
 
-function renderTable() {
+function renderTable(array = characters) {
   reset();
-  const tbl = generateTableFrom(characters);
+  const tbl = generateTableFrom(array);
   const container = document.getElementById("container");
   container.appendChild(tbl);
 }
@@ -196,9 +206,43 @@ function sortOnProperty(event) {
     }
   };
   const sortedCharacters = characters.sort(sortFunction);
-  characters = sortedCharacters;
-  renderTable();
 
+  renderTable(sortedCharacters);
+
+}
+
+function getAverageHeight (array) {
+
+  // average is just the sum of all elements divided by the number of elements
+  const calculateAverage = (arr) => arr.reduce((a,b) => a + b, 0) / arr.length;
+
+  // use Array.map to create a new array that includes just the height property
+  const heightsArray = array.map(element => parseInt(element.height));
+
+  // limit the number to 1 decimal place
+  const averageHeight = calculateAverage(heightsArray).toFixed(1);
+
+  console.log('averageHeight: ', averageHeight);
+
+  return averageHeight;
+}
+
+
+function filterOutShortPeople () {
+  const averageHeight = getAverageHeight(characters);
+  const tallFilter = (character) => parseInt(character.height) > averageHeight;
+  const onlyTall = characters.filter(tallFilter);
+  renderTable(onlyTall);
+}
+function filterOutTallPeople () {
+  const averageHeight = getAverageHeight(characters);
+  const shortFilter = (character) => parseInt(character.height) < averageHeight;
+  const onlyShort = characters.filter(shortFilter);
+  renderTable(onlyShort);
+}
+
+function clearFilters (event) {
+  renderTable();
 }
 
 document.addEventListener("DOMContentLoaded", initialize);
