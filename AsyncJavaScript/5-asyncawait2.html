@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>async javascript using promises</title>
+    <meta charset="UTF-8" />
+    <script src="5-asyncawait2-server.js"></script>
+    <script src="5-asyncawait2-client.js"></script>
+    <script src="setup.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">home</a> &mdash;
+      <a href="0-synchronous.html">synchronous JS</a> &mdash;
+      <a href="1-callbacks.html">callback functions</a> &mdash;
+      <a href="2-promises.html">promises with .then()</a> &mdash;
+      <a href="3-asyncawait.html">promises with async/await</a> &mdash;
+      <a href="4-promises2.html">multiple promises with .then()</a> &mdash;
+      multiple promises with async/await  &mdash;
+      <a href="fetch1.html">fetch with then()</a> &mdash;
+      <a href="fetch2.html">fetch with async/await</a>
+    </nav>
+    <hr/>
+
+    <label for="rb1"> <input type="radio" id="rb1" value="u1" name="username" checked> User 1 </label><br/>
+    <label for="rb2"> <input type="radio" id="rb2" value="u2" name="username"> User 2 </label><br/>
+    <label for="rb3"> <input type="radio" id="rb3" value="u3" name="username"> User 3 </label><br/>
+    <label for="rb4"> <input type="radio" id="rb4" value="u4" name="username"> User 4 </label><br/>
+    <label for="password"> Password: <br/> <input type="password" id="password" value="psswrd"><br/><br/> </label>
+
+    <button id="btn">get data using multiple promises</button> <hr/>
+
+    <aside>
+      <p>to see a response from both promises:</p>
+      <ul>
+        <li>Username: 'u1', 'u2' or 'u3'</li>
+        <li>Password: the prefilled value in the Password field</li>
+      </ul>
+
+      <p>to see a rejection from the first promise:</p>
+      <ul>
+        <li>Username: enter any value except 'u1', 'u2', 'u3' or 'u4' OR...</li>
+        <li>Password: change the prefilled value in the Password field</li>
+      </ul>
+
+      <p>to see a rejection from the second promise:</p>
+      <ul>
+        <li>Username: 'u4'</li>
+        <li>Password: the prefilled value in the Password field</li>
+      </ul>
+    </aside>
+  </body>
+</html>

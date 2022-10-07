@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Examples of calling asynchronous JavaScript functions</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">home</a> &mdash;
+      <a href="0-synchronous.html">synchronous JS</a> &mdash;
+      <a href="1-callbacks.html">callback functions</a> &mdash;
+      <a href="2-promises.html">promises with .then()</a> &mdash;
+      <a href="3-asyncawait.html">promises with async/await</a> &mdash;
+      <a href="4-promises2.html">multiple promises with .then()</a> &mdash;
+      <a href="5-asyncawait2.html">multiple promises with async/await</a> &mdash;
+      fetch with then() &mdash;
+      <a href="fetch2.html">fetch with async/await</a>
+    </nav>
+    <hr/>
+    <button id="btn">get data using fetch / process it with .then()</button>
+    <hr/>
+    <script>
+      function fetchData() {
+        let url = 'https://gorest.co.in/public-api/users'; // mangle the url to test the catch block
+        usingThen(url);
+      }
+
+      function usingThen(url) {
+        fetch(url)
+          .then(
+            (response) => {             // response is an instance of the HTTP Response object
+              if (response.ok) {
+                return response.json(); // this returns a Promise that's chainable
+              }
+              /*
+              else {
+                throw new Error(`error requesting ${url}`)
+              }
+              */
+            }
+          )
+          .then(                        // so you can call .then() on it
+            (responseInJSONFormat) => console.log(responseInJSONFormat.data)
+          )
+          .catch(
+            (err) => console.error('catch says: ', err.message)
+          );
+      }
+
+      document.getElementById('btn').addEventListener('click', fetchData);
+    </script>
+  </body>
+</html>
