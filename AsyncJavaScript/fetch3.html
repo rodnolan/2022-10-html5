@@ -14,8 +14,8 @@
       <a href="4-promises2.html">multiple promises with .then()</a> &mdash;
       <a href="5-asyncawait2.html">multiple promises with async/await</a> &mdash;
       <a href="fetch1.html">fetch with then()</a> &mdash;
-      fetch with async/await &mdash;
-      <a href="fetch3.html">fetch with a timeout option</a>
+      <a href="fetch2.html">fetch with async/await</a> &mdash;
+      fetch with a timeout option
     </nav>
     <hr/>
     <button id="btn">get data using fetch / process it with async/await</button>
@@ -28,7 +28,11 @@
 
       async function usingAsyncAwait(url) {
         try {
-          const response = await fetch(url);
+          // the fetch api doens't support timeouts
+          // const response = await fetch(url);
+          // see below for how to add one...
+
+          const response = await fetchWithTimeout(url, { timeout: 3000});
           const responseAsJSON = response.ok ? await response.json() : null;
           const data = responseAsJSON && responseAsJSON.data;
 
@@ -42,11 +46,31 @@
           if (data) {
             console.log(data);
           } else {
-            throw new Error('problem with request')
+            if (error.name === 'AbortError') {
+              throw new Error('request was aborted')
+            } else {
+              throw new Error('some other problem with request')
+            }
           }
         } catch (error) {
           console.error(error.message);
         }
+      }
+
+
+      // see https://dmitripavlutin.com/timeout-fetch-request/
+      // and https://developer.mozilla.org/en-US/docs/Web/API/AbortController
+      async function fetchWithTimeout(url, options = {}) {
+        const { timeout = 8000 } = options;
+
+        const controller = new AbortController();
+        const timeoutIdentifier = setTimeout(() => controller.abort(), timeout);
+        const response = await fetch(url, {
+          ...options,
+          signal: controller.signal
+        });
+        clearTimeout(timeoutIdentifier);
+        return response;
       }
 
       document.getElementById('btn').addEventListener('click', fetchData);
